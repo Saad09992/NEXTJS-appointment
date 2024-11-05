@@ -10,7 +10,7 @@ function ViewBooking({ userId }) {
     if (userId != null) {
       dispatch(getUserBooking(userId));
     }
-  }, []);
+  }, [dispatch, userId]);
 
   // Format time (HH:MM)
   const formatTime = (timeString) => {
