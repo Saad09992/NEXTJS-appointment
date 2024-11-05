@@ -36,7 +36,7 @@ export async function GET(request, { params }) {
     const matchingSlot = schedule.timeSlots.find((slot) =>
       bookedSlotIds.includes(slot._id.toString())
     );
-
+    const data = { slots: matchingSlot, date: schedule.date };
     if (!matchingSlot) {
       return NextResponse.json(
         { message: "No matching slot found" },
@@ -44,9 +44,7 @@ export async function GET(request, { params }) {
       );
     }
 
-    // Return the matching slot data
-    console.log(matchingSlot);
-    return NextResponse.json(matchingSlot, { status: 200 });
+    return NextResponse.json({ data: data, status: "OK" }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "Error fetching booking", error: error.message },

@@ -2,6 +2,7 @@ import { connectDB } from "@/app/dbconfig/config";
 import { NextResponse } from "next/server";
 import Schedule from "@/models/schedule";
 import User from "@/models/user";
+import { sendMail } from "@/utils/mailer";
 
 connectDB();
 
@@ -37,6 +38,10 @@ export async function POST(request) {
       );
     }
 
+    // Extract start time and end time from the slot for email
+    const sTime = slot.startTime;
+    const eTime = slot.endTime;
+
     // Update the specific slot using MongoDB's $ positional operator
     await Schedule.updateOne(
       { "timeSlots._id": slotId },
@@ -54,6 +59,15 @@ export async function POST(request) {
       bookedSlots: [slotId],
     });
     await user.save();
+    console.log(sTime);
+    console.log(eTime);
+    // Send email with the time slot information
+    await sendMail({
+      email,
+      userId: user._id,
+      sTime, // Pass the times from the slot
+      eTime, // directly to sendMail
+    });
 
     return NextResponse.json(
       {

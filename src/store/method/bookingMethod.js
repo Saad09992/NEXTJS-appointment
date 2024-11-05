@@ -21,3 +21,15 @@ export const bookSlot = createAsyncThunk(
     }
   }
 );
+
+export const getUserBooking = createAsyncThunk(
+  "auth/getUserBooking",
+  async (userId) => {
+    try {
+      const response = await axios.get(`/api/booking/get-booking/${userId}`);
+      return response.data; // Return data on success
+    } catch (error) {
+      return rejectWithValue(error.response.data); // Return error response on failure
+    }
+  }
+);

@@ -22,6 +22,10 @@ const scheduleSchema = new mongoose.Schema({
     type: Number, // Duration of each appointment in minutes
     required: true,
   },
+  date: {
+    type: String,
+    required: true,
+  },
   timeSlots: [
     {
       startTime: {

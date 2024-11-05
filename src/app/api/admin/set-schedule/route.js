@@ -17,6 +17,15 @@ function addMinutesToTime(time, minutes) {
   return `${newHour}:${newMinute}`;
 }
 
+// Function to validate date format (YYYY-MM-DD)
+function isValidDate(dateString) {
+  const regex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!regex.test(dateString)) return false;
+
+  const date = new Date(dateString);
+  return date instanceof Date && !isNaN(date);
+}
+
 // Function to generate time slots
 function generateTimeSlots(
   openingTime,
@@ -54,17 +63,28 @@ export async function POST(request) {
       closingTime,
       bufferTime,
       appointmentDuration,
+      date,
     } = reqBody;
 
+    // Validate all required fields
     if (
       !adminId ||
       !openingTime ||
       !closingTime ||
       !bufferTime ||
-      !appointmentDuration
+      !appointmentDuration ||
+      !date
     ) {
       return NextResponse.json(
         { message: "All fields are required" },
+        { status: 400 }
+      );
+    }
+
+    // Validate date format
+    if (!isValidDate(date)) {
+      return NextResponse.json(
+        { message: "Invalid date format. Use YYYY-MM-DD" },
         { status: 400 }
       );
     }
@@ -84,6 +104,7 @@ export async function POST(request) {
       closingTime,
       bufferTime,
       appointmentDuration,
+      date, // Added date field
       timeSlots,
     });
 

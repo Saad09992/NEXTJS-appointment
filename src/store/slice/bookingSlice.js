@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSlots, bookSlot } from "../method/bookingMethod";
+import { getSlots, bookSlot, getUserBooking } from "../method/bookingMethod";
 
 const bookingSlice = createSlice({
   name: "booking",
@@ -16,6 +16,12 @@ const bookingSlice = createSlice({
         state.messege = "Slots Fetched Successfully";
       })
       .addCase(bookSlot.fulfilled, (state, action) => {
+        state.data = action.payload.data;
+        state.messege = action.payload.message;
+        state.status = action.payload.status;
+      })
+      .addCase(getUserBooking.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.data = action.payload.data;
         state.messege = action.payload.message;
         state.status = action.payload.status;

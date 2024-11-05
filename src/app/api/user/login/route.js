@@ -10,7 +10,7 @@ export async function POST(request) {
   try {
     const reqBody = await request.json();
     const { username, password } = reqBody;
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username, isAdmin: true });
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
