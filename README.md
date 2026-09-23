@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Appointment Management System
 
-## Getting Started
+A full-stack appointment booking application built with Next.js as a
+practice project for implementing authentication, appointment booking,
+schedule management, and database-driven workflows.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The application supports two types of users:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Normal users** can book appointments without logging in.
+- **Administrators** can log in and create/manage appointment schedules.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The project was built as a personal practice project to gain hands-on
+experience building a complete full-stack application with Next.js.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+### Appointment Booking
 
-To learn more about Next.js, take a look at the following resources:
+- View available appointment slots
+- Book an appointment
+- Date-based appointment selection
+- User-friendly appointment booking flow
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Admin
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Admin authentication
+- Schedule creation
+- Appointment schedule management
 
-## Deploy on Vercel
+### Application
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Responsive UI
+- Form validation
+- Client-side state management
+- API-based communication
+- Database-backed application flow
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+
+### Frontend
+
+- Next.js
+- React
+- JavaScript
+- TailwindCSS
+- React Datepicker
+- Formik
+- Yup
+- Lucide React
+
+### Backend / Data
+
+- Next.js
+- MongoDB
+- Mongoose
+- Axios
+
+### Authentication
+
+- JSON Web Tokens (JWT)
+- bcrypt
+
+### State Management
+
+- Redux Toolkit
+- React Redux
+
+### Other
+
+- Nodemailer
